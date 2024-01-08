@@ -7,6 +7,10 @@ export const Weather = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const wheaterUpdate = (e) => {
+    setCountry(e.target.value);
+  };
+
   const apiKey = "cd9e264ce1b84533a9750115233112"; // Replace with your actual API key from weatherapi.com
   const apiUrl = "https://api.weatherapi.com/v1/current.json"; // Replace with the actual API endpoint
 
@@ -40,13 +44,13 @@ export const Weather = () => {
           className="form-control"
           type="text"
           value={country}
-          onChange={(e) => setCountry(e.target.value)}
+          onChange={wheaterUpdate}
         />
       </div>
 
       {loading && <p className="text-warning">Loading...</p>}
 
-      {error && <p className="text-danger">Error: {error}</p>}
+      {!error ? <p className="text-danger">Error: {error}</p> : <p></p>}
 
       {weatherData && (
         <div>
